@@ -6,12 +6,22 @@ import java.text.SimpleDateFormat;
 
 public class Main {
     public static void main(String[] args) {
+        FileReader read =null;
         try {
             var file = new FileReader("test.txt");
-            var read=file.read();
+            read= file;
             new SimpleDateFormat().parse("");
         }catch (IOException | ParseException e) {
             System.out.println(e);
+        }
+        finally {
+            if(read!=null){
+                try {
+                    read.close();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
 
     }
